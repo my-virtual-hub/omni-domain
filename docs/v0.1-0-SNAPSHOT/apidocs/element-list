@@ -1,0 +1,8 @@
+br.com.quicula.omnicommunicator.domain
+br.com.quicula.omnicommunicator.domain.exception
+br.com.quicula.omnicommunicator.domain.model
+br.com.quicula.omnicommunicator.domain.orchestrator
+br.com.quicula.omnicommunicator.domain.port.inbound
+br.com.quicula.omnicommunicator.domain.port.outbound
+br.com.quicula.omnicommunicator.domain.service
+br.com.quicula.omnicommunicator.domain.utils
