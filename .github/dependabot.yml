@@ -6,6 +6,10 @@
 version: 2
 updates:
   - package-ecosystem: "maven" # See documentation for possible values
-    directory: "/" # Location of package manifests
+    directory: "/src/main/java" # Location of package manifests
+    schedule:
+      interval: "weekly"
+- package-ecosystem: "maven" # See documentation for possible values
+    directory: "/src/test/java" # Location of package manifests
     schedule:
       interval: "weekly"
