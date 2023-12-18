@@ -13,9 +13,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <sonar.organization>my-virtual-hub</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-</properties>
-
     <build>
         <plugins>
             <plugin>
