@@ -25,3 +25,6 @@ replay_pid*
 
 #VSCODE WORKSPACE
 omni-communicator-domain-layer.code-workspace
+
+#REMOVE TARGET FOLDER
+domain/target/

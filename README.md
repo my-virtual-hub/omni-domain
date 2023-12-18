@@ -56,6 +56,16 @@ We are excited to see how the OmniCommunicator will be used and evolve. Whether 
 
 Together, let's revolutionize the way communications are orchestrated!
 
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- You have installed Java 17.0.9 or higher. You can check your Java version with the command `java -version` in your command line interface. If you don't have it installed, you can download it from the [official Oracle website](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html) or install it via a package manager.
+
+- You have installed Apache Maven 3.6.3 or higher. You can check your Maven version with the command `mvn -version` in your command line interface. If you don't have it installed, you can download it from the [official Apache Maven website](https://maven.apache.org/download.cgi) or install it via a package manager.
+
+These are essential tools for building and managing the project. The project uses Java 17.0.9 or higher for its development and Apache Maven 3.6.3 or higher for its dependency management and build automation.
+
 ## Contact
 <ul>
   <img src="images/marco.png" >
