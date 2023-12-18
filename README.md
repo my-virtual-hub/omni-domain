@@ -66,6 +66,12 @@ Before you begin, ensure you have met the following requirements:
 
 These are essential tools for building and managing the project. The project uses Java 17.0.9 or higher for its development and Apache Maven 3.6.3 or higher for its dependency management and build automation.
 
+
+## Using SonarCloud for Code quality
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=my-virtual-hub_omni-communicator-domain-layer)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer)
+
 ## Contact
 <ul>
   <img src="images/marco.png" >
