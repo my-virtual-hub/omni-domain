@@ -18,6 +18,7 @@ One of the key benefits of the OmniCommunicator is its flexibility and extensibi
 
 ## Table of Contents
 - [Domain-Driven Design (DDD) and SOLID](#domain-driven-design-ddd-and-solid)
+- [Git Flow](#git-flow)
 - [Independent Project](#independent-project)
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -39,6 +40,25 @@ SOLID is an acronym for five principles of object-oriented design and classes th
 - **Dependency Inversion Principle (DIP):** Depend on abstractions, not on concretions.
 
 By following these principles and practices, we hope to create high-quality software that is easy to maintain, extend, and adapt to changes in business needs.
+
+## Git Flow
+
+This project adopts Git Flow as its branching and release strategy. Git Flow is a branching model that helps developers organize and track different versions of a project. It was chosen for this project not only for its effectiveness, but also as a learning opportunity for developers getting familiar with version control patterns.
+
+<div align="center">
+  <img src="images/gitflow-diagram.png">
+  <p><i>Git Flow Diagram</i></p>
+</div>
+
+In Git Flow:
+
+- The `main` (or `master`) branch represents the production-ready version of the project.
+- The `develop` branch is where features are integrated and tested before being moved to production.
+- `feature/` branches are created for each new feature or bug fix, allowing for isolated development and code review.
+- `release/` branches are created to prepare a new product release, allowing for minor bug fixes and version metadata preparation.
+- `hotfix/` branches are created to make urgent bug fixes in production versions.
+
+By following Git Flow, we aim to maintain a clear and organized record of the project's progress, making code review, bug tracking, and collaboration among developers easier.
 
 ## Independent Project
 
@@ -68,11 +88,10 @@ Before you begin, ensure you have met the following requirements:
 
 These are essential tools for building and managing the project. The project uses Java 17.0.9 or higher for its development and Apache Maven 3.6.3 or higher for its dependency management and build automation.
 
-## Using SonarCloud for Code Quality
+## Using SonarCloud and Snyk for Code Quality
 
-### SonarCloud Metrics
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer) 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=my-virtual-hub_omni-communicator-domain-layer)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=my-virtual-hub_omni-communicator-domain-layer)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer) [![Known Vulnerabilities](https://snyk.io/test/github/marco-quicula/omni-communicator-domain-layer/badge.svg)](https://snyk.io/test/github/marco-quicula/omni-communicator-domain-layer) 
 
 | Quality Metrics | Code Metrics | Security Metrics |
 |---|---|---|
