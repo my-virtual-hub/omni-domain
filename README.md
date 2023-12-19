@@ -68,11 +68,10 @@ Before you begin, ensure you have met the following requirements:
 
 These are essential tools for building and managing the project. The project uses Java 17.0.9 or higher for its development and Apache Maven 3.6.3 or higher for its dependency management and build automation.
 
-## Using SonarCloud for Code Quality
+## Using SonarCloud and Snyk for Code Quality
 
-### SonarCloud Metrics
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer) 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=my-virtual-hub_omni-communicator-domain-layer)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=my-virtual-hub_omni-communicator-domain-layer)](https://sonarcloud.io/summary/new_code?id=my-virtual-hub_omni-communicator-domain-layer) [![Known Vulnerabilities](https://snyk.io/test/github/marco-quicula/omni-communicator-domain-layer/badge.svg)](https://snyk.io/test/github/marco-quicula/omni-communicator-domain-layer) 
 
 | Quality Metrics | Code Metrics | Security Metrics |
 |---|---|---|
