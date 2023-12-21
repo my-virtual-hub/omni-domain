@@ -61,7 +61,7 @@
                         <arguments>
                             <argument>-c</argument>
                             <argument>
-                                if [[ ! $(git rev-parse --abbrev-ref HEAD) =~ ^(main|develop|feature/.*|bugfix/.*|hotfix/.*|release/.*)$ ]]; then echo "Invalid branch name"; exit 1; fi
+                                if [[ ! $(git rev-parse --abbrev-ref HEAD) =~ ^(main|develop|feature/.*|hotfix/.*)$ ]]; then echo "Invalid branch name"; exit 1; fi
                             </argument>
                         </arguments>
                     </configuration>
