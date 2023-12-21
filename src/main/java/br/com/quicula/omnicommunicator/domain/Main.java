@@ -14,7 +14,7 @@ import br.com.quicula.omnicommunicator.domain.utils.PrintBanner;
  */
 public class Main {
     
-    private static String initializer = initializer();
+    private static final String INITIALIZER = initializer();
 
     /**
      * Returns the initialization message for the application.
@@ -22,7 +22,7 @@ public class Main {
      * @return the initialization message
      */
     public static String getInitializer() {
-        return initializer;
+        return INITIALIZER;
     }
 
     /**
