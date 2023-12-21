@@ -23,56 +23,6 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.6.3</version>
             </plugin>
-
-
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>4.0.5</version>
-                <executions>
-                    <execution>
-                        <id>get-the-git-infos</id>
-                        <goals>
-                        <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-                    <includeOnlyProperties>
-                        <includeOnlyProperty>^git.branch$</includeOnlyProperty>
-                    </includeOnlyProperties>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                <execution>
-                    <id>check-branch-name</id>
-                    <phase>validate</phase>
-                    <goals>
-                        <goal>exec</goal>
-                    </goals>
-                    <configuration>
-                        <executable>bash</executable>
-                        <arguments>
-                            <argument>-c</argument>
-                            <argument>
-                                if [[ ! $(git rev-parse --abbrev-ref HEAD) =~ ^(main|develop|feature/.*|bugfix/.*|hotfix/.*|release/.*)$ ]]; then echo "Invalid branch name"; exit 1; fi
-                            </argument>
-                        </arguments>
-                    </configuration>
-                </execution>
-                </executions>
-            </plugin>
-
-
-
-
-
         </plugins>
     </build>
 

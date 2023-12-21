@@ -28,3 +28,4 @@ omni-communicator-domain-layer.code-workspace
 
 #REMOVE TARGET FOLDER
 target/
+.vscode/settings.json
