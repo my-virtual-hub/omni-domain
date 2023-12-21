@@ -5,16 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.quicula.omnicommunicator</groupId>
-    <artifactId>domain</artifactId>
-    <version>0.1-0-SNAPSHOT</version>
+    <artifactId>omnicommunicator-domain</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <sonar.organization>my-virtual-hub</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>br.com.quicula.omnicommunicator</groupId>
+            <artifactId>omnicommunicator-model</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -23,22 +30,30 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.6.3</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/marco-quicula/omni-communicator</url>
-        </repository>
-    </distributionManagement>
 
     <repositories>
         <repository>
             <id>github</id>
             <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/marco-quicula/omni-communicator</url>
+            <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-domain-model</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-domain-layer</url>
+        </repository>
+    </distributionManagement>
 </project>
