@@ -41,25 +41,6 @@ SOLID is an acronym for five principles of object-oriented design and classes th
 
 By following these principles and practices, we hope to create high-quality software that is easy to maintain, extend, and adapt to changes in business needs.
 
-## Git Flow
-
-This project adopts Git Flow as its branching and release strategy. Git Flow is a branching model that helps developers organize and track different versions of a project. It was chosen for this project not only for its effectiveness, but also as a learning opportunity for developers getting familiar with version control patterns.
-
-<div align="center">
-  <img src="images/gitflow-diagram.png">
-  <p><i>Git Flow Diagram</i></p>
-</div>
-
-In Git Flow:
-
-- The `main` (or `master`) branch represents the production-ready version of the project.
-- The `develop` branch is where features are integrated and tested before being moved to production.
-- `feature/` branches are created for each new feature or bug fix, allowing for isolated development and code review.
-- `release/` branches are created to prepare a new product release, allowing for minor bug fixes and version metadata preparation.
-- `hotfix/` branches are created to make urgent bug fixes in production versions.
-
-By following Git Flow, we aim to maintain a clear and organized record of the project's progress, making code review, bug tracking, and collaboration among developers easier.
-
 ## Independent Project
 
 This is an independent project and its evolution will depend on availability. We are open and welcome any help from the community. Whether contributing code, reporting bugs, suggesting improvements, or simply using the project, your participation is welcome and appreciated!
