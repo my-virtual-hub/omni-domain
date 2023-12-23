@@ -28,6 +28,9 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
 
+    - name: Purge local Maven repository
+      run: mvn dependency:purge-local-repository
+    
     - name: Build with Maven
       run: mvn -B ${{ github.ref == 'refs/heads/develop' && '-U' || '' }} package --file pom.xml
 
