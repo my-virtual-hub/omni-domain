@@ -9,3 +9,6 @@ documentation:
 
 maven:
   - pom.xml
+
+workflows:
+  - .github/workflows/**/*
