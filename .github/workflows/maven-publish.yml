@@ -8,6 +8,7 @@ on:
     types: [created]
   push:
     branches:
+      - main
       - develop
 
 jobs:
@@ -28,14 +29,13 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
 
-    - name: Purge local Maven repository
-      run: mvn dependency:purge-local-repository
-    
+    - name: Set Version
+      run: echo "VERSION='${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && 'RELEASE' || 'SNAPSHOT' }}'" >> $GITHUB_ENV
+
     - name: Build with Maven
-      run: mvn -B ${{ github.ref == 'refs/heads/develop' && '-U' || '' }} package --file pom.xml
+      run: mvn -B ${{ github.ref != 'refs/heads/main' && '-U' || '' }} package --file pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Drevision=$VERSION
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        VERSION: ${{ (github.ref == 'refs/heads/develop' && 'SNAPSHOT') || 'RELEASE' }}
