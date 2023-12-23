@@ -53,9 +53,19 @@
 
     <repositories>
         <repository>
-            <id>github</id>
+            <id>github-1</id>
             <name>GitHub OWNER Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-domain-model</url>
+        </repository>
+        <repository>
+            <id>github-2</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-ports-inbound</url>
+        </repository>
+        <repository>
+            <id>github-3</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/marco-quicula/omnicommunicator-ports-outbound</url>
         </repository>
     </repositories>
 

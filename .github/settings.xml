@@ -8,5 +8,20 @@
             <username>${env.MAVEN_USERNAME}</username>
             <password>${env.MAVEN_PASSWORD}</password>
         </server>
+        <server>
+            <id>github-1</id>
+            <username>${env.MAVEN_USERNAME}</username>
+            <password>${env.MAVEN_PASSWORD}</password>
+        </server>
+        <server>
+            <id>github-2</id>
+            <username>${env.MAVEN_USERNAME}</username>
+            <password>${env.MAVEN_PASSWORD}</password>
+        </server>
+        <server>
+            <id>github-3</id>
+            <username>${env.MAVEN_USERNAME}</username>
+            <password>${env.MAVEN_PASSWORD}</password>
+        </server>
     </servers>
 </settings>
