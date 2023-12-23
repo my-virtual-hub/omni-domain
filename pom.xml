@@ -21,7 +21,7 @@
         <dependency>
             <groupId>br.com.quicula.omnicommunicator.ports.outbound</groupId>
             <artifactId>omnicommunicator-ports-outbound</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <version>0.1.0-BUILD</version>
         </dependency>
     </dependencies>
 
@@ -81,7 +81,7 @@
                         <enabled>true</enabled>
                     </snapshots>
                     <releases>
-                        <enabled>false</enabled>
+                        <enabled>true</enabled>
                     </releases>
                 </repository>
             </repositories>

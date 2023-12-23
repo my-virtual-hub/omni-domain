@@ -30,7 +30,7 @@ jobs:
         settings-path: ${{ github.workspace }}
 
     - name: Set Version
-      run: echo "VERSION='${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && 'RELEASE' || 'SNAPSHOT' }}'" >> $GITHUB_ENV
+      run: echo "VERSION='RELEASE'" >> $GITHUB_ENV
 
     - name: Build with Maven
       run: mvn -B ${{ github.ref != 'refs/heads/main' && '-U' || '' }} package --file pom.xml
