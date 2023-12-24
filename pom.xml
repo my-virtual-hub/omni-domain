@@ -45,7 +45,7 @@
 
     <distributionManagement>
         <repository>
-            <id>github-domain</id>
+            <id>github</id>
             <name>GitHub OWNER Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-domain-layer</url>
         </repository>
