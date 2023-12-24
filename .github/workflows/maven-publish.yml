@@ -29,13 +29,10 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
 
-    - name: Set Version
-      run: echo "VERSION='RELEASE'" >> $GITHUB_ENV
-
     - name: Build with Maven
       run: mvn -B ${{ github.ref != 'refs/heads/main' && '-U' || '' }} package --file pom.xml
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Drevision=$VERSION
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
