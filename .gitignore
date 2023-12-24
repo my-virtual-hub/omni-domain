@@ -27,5 +27,8 @@ replay_pid*
 omni-communicator-domain-layer.code-workspace
 
 #REMOVE TARGET FOLDER
-target/
+/target/
 .vscode/settings.json
+/omnicommunicator-domain.iml
+/.idea/
+
