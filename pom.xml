@@ -17,6 +17,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>br.com.quicula.omnicommunicator.domain.model</groupId>
+            <artifactId>omnicommunicator-domain-model</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.quicula.omnicommunicator.ports.inbound</groupId>
+            <artifactId>omnicommunicator-ports-inbound</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.quicula.omnicommunicator.ports.outbound</groupId>
+            <artifactId>omnicommunicator-ports-outbound</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
