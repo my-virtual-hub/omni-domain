@@ -20,7 +20,7 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          maven-settings: .github/settings.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.3
