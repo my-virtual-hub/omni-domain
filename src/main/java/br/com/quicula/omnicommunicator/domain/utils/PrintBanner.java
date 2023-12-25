@@ -19,6 +19,11 @@ import br.com.quicula.omnicommunicator.domain.Main;
 public class PrintBanner {
 
     /**
+     * Private constructor to prevent instantiation.
+     */
+    private PrintBanner() {}
+
+    /**
      * Prints the application banner to the standard output.
      * 
      * <p>
@@ -30,7 +35,11 @@ public class PrintBanner {
      */
     public static void printBanner() {
         try (InputStream is = Main.class.getResourceAsStream("/banner_standard.txt");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+            if (is == null) {
+                System.out.println("The banner file was not found.");
+                return;
+            }
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
