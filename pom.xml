@@ -60,7 +60,6 @@
             <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-domain-layer</url>
         </repository>
     </distributionManagement>
-
     <profiles>
         <profile>
             <id>github</id>
@@ -68,6 +67,17 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <repositories>
+                <repository>
+                    <id>central</id>
+                    <name>Maven Repository Switchboard</name>
+                    <url>https://repo.maven.apache.org/maven2/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
                 <repository>
                     <id>github</id>
                     <name>GitHub OWNER Apache Maven Packages</name>
