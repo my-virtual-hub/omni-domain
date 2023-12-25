@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 import br.com.quicula.omnicommunicator.domain.Main;
 
@@ -34,17 +35,15 @@ public class PrintBanner {
      * </p>
      */
     public static void printBanner() {
-        try (InputStream is = Main.class.getResourceAsStream("/banner_standard.txt");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-            if (is == null) {
-                System.out.println("The banner file was not found.");
-                return;
-            }
+        try {
+            InputStream is = Main.class.getResourceAsStream("/banner_standard.txt");
+            Objects.requireNonNull(is, "The banner file could not be found.");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             System.out.println("An error occurred while reading the banner file.");
             e.printStackTrace();
         }
