@@ -20,5 +20,4 @@ jobs:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-        with:
-          args: "-e MAVEN_OPTS='--settings .github/settings.xml'"
+          MAVEN_OPTS: --settings .github/settings.xml
