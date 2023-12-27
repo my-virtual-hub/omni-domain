@@ -53,40 +53,35 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-domain-layer</url>
-        </repository>
-    </distributionManagement>
     <profiles>
         <profile>
             <id>github</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <repositories>
-                <repository>
-                    <id>central</id>
-                    <name>Maven Repository Switchboard</name>
-                    <url>https://repo.maven.apache.org/maven2/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
+            <distributionManagement>
                 <repository>
                     <id>github</id>
                     <name>GitHub OWNER Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/marco-quicula/*</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
+                    <url>https://maven.pkg.github.com/marco-quicula/omni-communicator-domain-layer</url>
                 </repository>
-            </repositories>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>alternative</id>
+            <distributionManagement>
+                <repository>
+                    <id>alternative-repo-release</id>
+                    <name>My Virtual Hub Maven Release Packages</name>
+                    <url>https://repository.myvirtualhub.com.br/repository/mvhub-repo-release/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>alternative-repo-snapshot</id>
+                    <name>My Virtual Hub Maven Snapshot Packages</name>
+                    <url>https://repository.myvirtualhub.com.br/repository/mvhub-repo-snapshot/</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
     </profiles>
+
 </project>

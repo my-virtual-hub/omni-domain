@@ -1,12 +1,22 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                       https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
             <id>github</id>
             <username>${env.MAVEN_USERNAME}</username>
             <password>${env.MAVEN_PASSWORD}</password>
+        </server>
+        <server>
+            <id>alternative-repo-release</id>
+            <username>${env.MAVEN_USERNAME_ALTERNATIVE_RELEASE}</username>
+            <password>${env.MAVEN_PASSWORD_ALTERNATIVE_RELEASE}</password>
+        </server>
+        <server>
+            <id>alternative-repo-snapshot</id>
+            <username>${env.MAVEN_USERNAME_ALTERNATIVE_SNAPSHOT}</username>
+            <password>${env.MAVEN_PASSWORD_ALTERNATIVE_SNAPSHOT}</password>
         </server>
     </servers>
 </settings>
