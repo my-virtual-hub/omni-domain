@@ -55,6 +55,16 @@
 
     <repositories>
         <repository>
+            <id>alternative-repo-release</id>
+            <name>My Virtual Hub Maven Release Packages</name>
+            <url>https://repository.myvirtualhub.com.br/repository/mvhub-repo-release/</url>
+        </repository>
+        <repository>
+            <id>alternative-repo-snapshot</id>
+            <name>My Virtual Hub Maven Snapshot Packages</name>
+            <url>https://repository.myvirtualhub.com.br/repository/mvhub-repo-snapshot/</url>
+        </repository>
+        <repository>
             <id>github</id>
             <name>GitHub OWNER Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/marco-quicula/*</url>
