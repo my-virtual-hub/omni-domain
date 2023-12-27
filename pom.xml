@@ -53,6 +53,14 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/marco-quicula/*</url>
+        </repository>
+    </repositories>
+
     <profiles>
         <profile>
             <id>github</id>
