@@ -31,3 +31,4 @@ target/
 .vscode/settings.json
 /.idea/
 /omnicommunicator-domain.iml
+/omni-domain.iml
