@@ -3,4 +3,4 @@
  * of the OmniCommunicator. These classes represent the fundamental concepts that the application
  * manipulates.
  */
-package br.com.quicula.omnicommunicator.domain.model;
+package br.com.myvirtualhub.omni.domain.model;
