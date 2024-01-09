@@ -7,6 +7,8 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
+
 import java.util.Objects;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-09
  */
-public class SmsPayload {
+public class SmsPayload implements Model {
     private SmsRecipient recipient;
     private SmsMessage message;
     private String clientMessageId;

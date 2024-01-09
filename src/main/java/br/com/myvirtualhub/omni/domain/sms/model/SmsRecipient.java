@@ -8,6 +8,7 @@
 package br.com.myvirtualhub.omni.domain.sms.model;
 
 import br.com.myvirtualhub.omni.domain.core.model.commons.PhoneNumber;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 /**
  * Represents the recipient of an SMS message in the application.
@@ -20,7 +21,7 @@ import br.com.myvirtualhub.omni.domain.core.model.commons.PhoneNumber;
  * @since   2024-01-09
  * @see     PhoneNumber
  */
-public class SmsRecipient {
+public class SmsRecipient implements Model {
 
     private final PhoneNumber phoneNumber;
 
