@@ -5,10 +5,10 @@
  *  * you agree to respect the terms and conditions of the BSD-2-Clause license.
  */
 
-package br.com.myvirtualhub.omni.domain.model.configuration;
+package br.com.myvirtualhub.omni.domain.core.model.configuration;
 
-import br.com.myvirtualhub.omni.domain.enums.ChannelType;
-import br.com.myvirtualhub.omni.domain.model.interfaces.Model;
+import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.List;
 import java.util.Objects;

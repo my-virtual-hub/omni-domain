@@ -5,7 +5,7 @@
  *  * you agree to respect the terms and conditions of the BSD-2-Clause license.
  */
 
-package br.com.myvirtualhub.omni.domain.enums;
+package br.com.myvirtualhub.omni.domain.core.enums;
 
 /**
  * Defines the types of channels available in the system.
@@ -18,8 +18,8 @@ package br.com.myvirtualhub.omni.domain.enums;
 public enum ChannelType {
 
     /**
-     * The SMS channel type. It represents communication channels that use
-     * the Short Message Service (SMS) for transferring information.
+     * The SMSMessage channel type. It represents communication channels that use
+     * the Short Message Service (SMSMessage) for transferring information.
      */
     SMS
 }

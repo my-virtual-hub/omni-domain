@@ -5,9 +5,9 @@
  *  * you agree to respect the terms and conditions of the BSD-2-Clause license.
  */
 
-package br.com.myvirtualhub.omni.domain.model.provider;
+package br.com.myvirtualhub.omni.domain.core.model.provider;
 
-import br.com.myvirtualhub.omni.domain.model.interfaces.Model;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.List;
 import java.util.Objects;

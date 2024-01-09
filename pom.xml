@@ -16,9 +16,18 @@
         <maven-source-plugin>2.4</maven-source-plugin>
         <nexus-staging-maven-plugin>1.6.13</nexus-staging-maven-plugin>
         <maven-gpg-plugin>3.1.0</maven-gpg-plugin>
+        <com-googlecode-libphonenumber>8.13.12</com-googlecode-libphonenumber>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+            <version>${com-googlecode-libphonenumber}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

@@ -5,7 +5,7 @@
  *  * you agree to respect the terms and conditions of the BSD-2-Clause license.
  */
 
-package br.com.myvirtualhub.omni.domain.model.interfaces;
+package br.com.myvirtualhub.omni.domain.core.model.interfaces;
 
 /**
  * This is a standard interface for all business rule Model classes in the project.
