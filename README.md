@@ -72,7 +72,7 @@ These are essential tools for building and managing the project. The project use
 ## Using SonarCloud and Snyk for Code Quality
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=marco-quicula_omni-communicator-domain-layer) 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=marco-quicula_omni-communicator-domain-layer)](https://sonarcloud.io/summary/new_code?id=marco-quicula_omni-communicator-domain-layer) [![Known Vulnerabilities](https://snyk.io/test/github/marco-quicula/omni-communicator-domain-layer/badge.svg)](https://snyk.io/test/github/marco-quicula/omni-communicator-domain-layer) 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=marco-quicula_omni-communicator-domain-layer)](https://sonarcloud.io/summary/new_code?id=marco-quicula_omni-communicator-domain-layer) [![Qodana](https://github.com/my-virtual-hub/omni-comm-domain/actions/workflows/qodana.yml/badge.svg?branch=main)](https://github.com/my-virtual-hub/omni-comm-domain/actions/workflows/qodana.yml) 
 
 | Quality Metrics | Code Metrics | Security Metrics |
 |---|---|---|

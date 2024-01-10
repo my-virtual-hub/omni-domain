@@ -1,6 +1,6 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                       https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
@@ -9,19 +9,48 @@
             <password>${env.MAVEN_PASSWORD}</password>
         </server>
         <server>
-            <id>github-1</id>
-            <username>${env.MAVEN_USERNAME}</username>
-            <password>${env.MAVEN_PASSWORD}</password>
+            <id>alternative-repo-release</id>
+            <username>${env.MAVEN_USERNAME_ALTERNATIVE_RELEASE}</username>
+            <password>${env.MAVEN_PASSWORD_ALTERNATIVE_RELEASE}</password>
         </server>
         <server>
-            <id>github-2</id>
-            <username>${env.MAVEN_USERNAME}</username>
-            <password>${env.MAVEN_PASSWORD}</password>
+            <id>alternative-repo-snapshot</id>
+            <username>${env.MAVEN_USERNAME_ALTERNATIVE_SNAPSHOT}</username>
+            <password>${env.MAVEN_PASSWORD_ALTERNATIVE_SNAPSHOT}</password>
         </server>
         <server>
-            <id>github-3</id>
-            <username>${env.MAVEN_USERNAME}</username>
-            <password>${env.MAVEN_PASSWORD}</password>
+            <id>ossrh</id>
+            <username>${env.MAVEN_USERNAME_OSSRH}</username>
+            <password>${env.MAVEN_PASSWORD_OSSRH}</password>
         </server>
     </servers>
+    <profiles>
+        <profile>
+            <id>github</id>
+            <properties>
+                <gpg.executable>gpg</gpg.executable>
+                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+                <gpg.passphraseServerId>${env.GPG_PASSPHRASE_SERVER_ID}</gpg.passphraseServerId>
+            </properties>
+        </profile>
+        <profile>
+            <id>alternative</id>
+            <properties>
+                <gpg.executable>gpg</gpg.executable>
+                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+                <gpg.passphraseServerId>${env.GPG_PASSPHRASE_SERVER_ID}</gpg.passphraseServerId>
+            </properties>
+        </profile>
+        <profile>
+            <id>ossrh</id>
+            <properties>
+                <gpg.executable>gpg</gpg.executable>
+                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
+                <gpg.passphraseServerId>${env.GPG_PASSPHRASE_SERVER_ID}</gpg.passphraseServerId>
+            </properties>
+        </profile>
+    </profiles>
 </settings>

@@ -9,4 +9,4 @@
  * independent of any specific application framework or technology.
  * </p>
  */
-package br.com.quicula.omnicommunicator.domain;
+package br.com.myvirtualhub.omni.domain;

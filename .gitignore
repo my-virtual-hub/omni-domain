@@ -29,3 +29,6 @@ omni-communicator-domain-layer.code-workspace
 #REMOVE TARGET FOLDER
 target/
 .vscode/settings.json
+/.idea/
+/omnicommunicator-domain.iml
+/omni-domain.iml

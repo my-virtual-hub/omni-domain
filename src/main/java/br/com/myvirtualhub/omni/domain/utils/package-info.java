@@ -7,4 +7,4 @@
  * help to reduce code duplication and increase code reuse.
  * </p>
  */
-package br.com.quicula.omnicommunicator.domain.utils;
+package br.com.myvirtualhub.omni.domain.utils;

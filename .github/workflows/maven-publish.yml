@@ -4,35 +4,74 @@
 name: Maven Package
 
 on:
-  release:
-    types: [created]
   push:
     branches:
+      - main
       - develop
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'zulu'
-        server-id: github
-        settings-path: ${{ github.workspace }}
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
 
-    - name: Build with Maven
-      run: mvn -B ${{ github.ref == 'refs/heads/develop' && '-U' || '' }} package --file pom.xml
+      - name: Build with Maven
+        run: mvn -B ${{ github.ref != 'refs/heads/main' && '-U' || '' }} package --file pom.xml --settings .github/settings.xml
 
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Drevision=$VERSION
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        VERSION: ${{ (github.ref == 'refs/heads/develop' && 'SNAPSHOT') || 'RELEASE' }}
+      - name: Prepare GPG to Sign
+        run: |
+          mkdir -p ~/.gnupg/
+          echo "${{ secrets.GPG_PASSPHRASE }}" > ~/.gnupg/passphrase-file
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" > ~/.gnupg/private-key.asc
+          chmod 600 ~/.gnupg/passphrase-file
+          cat ~/.gnupg/passphrase-file | gpg --batch --import --passphrase-fd 0 ~/.gnupg/private-key.asc
+
+      - name: Publish to GitHub Repository
+        run: mvn -B deploy --settings .github/settings.xml -Pgithub -DskipTests
+        env:
+          MAVEN_USERNAME: ${{ vars.MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          GPG_PASSPHRASE : ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEYNAME : ${{ vars.GPG_KEYNAME }}
+          GPG_PASSPHRASE_SERVER_ID : ${{ secrets.GPG_PASSPHRASE_SERVER_ID }}
+
+      - name: Publish to MVH Repository
+        run: mvn -B deploy --settings .github/settings.xml -Palternative -DskipTests
+        env:
+          MAVEN_USERNAME_ALTERNATIVE_RELEASE: ${{ vars.MAVEN_USERNAME_ALTERNATIVE_RELEASE }}
+          MAVEN_PASSWORD_ALTERNATIVE_RELEASE: ${{ secrets.MAVEN_PASSWORD_ALTERNATIVE_RELEASE }}
+          MAVEN_USERNAME_ALTERNATIVE_SNAPSHOT: ${{ vars.MAVEN_USERNAME_ALTERNATIVE_SNAPSHOT }}
+          MAVEN_PASSWORD_ALTERNATIVE_SNAPSHOT: ${{ secrets.MAVEN_PASSWORD_ALTERNATIVE_SNAPSHOT }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEYNAME: ${{ vars.GPG_KEYNAME }}
+          GPG_PASSPHRASE_SERVER_ID: ${{ secrets.GPG_PASSPHRASE_SERVER_ID }}
+
+      - name: Publish to OSSRH Repository
+        run: mvn -B deploy --settings .github/settings.xml -Possrh -DskipTests
+        env:
+          MAVEN_USERNAME_OSSRH: ${{ vars.MAVEN_USERNAME_OSSRH }}
+          MAVEN_PASSWORD_OSSRH: ${{ secrets.MAVEN_PASSWORD_OSSRH }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEYNAME: ${{ vars.GPG_KEYNAME }}
+          GPG_PASSPHRASE_SERVER_ID: ${{ secrets.GPG_PASSPHRASE_SERVER_ID }}
