@@ -25,4 +25,12 @@
             <version>${com-googlecode-libphonenumber}</version>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>alternative-repo-public</id>
+            <name>My Virtual Hub Maven Public Packages</name>
+            <url>https://repository.myvirtualhub.com.br/repository/myvirtualhub-public/</url>
+        </repository>
+    </repositories>
 </project>
