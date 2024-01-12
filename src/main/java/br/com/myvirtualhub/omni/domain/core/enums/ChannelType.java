@@ -12,6 +12,7 @@ package br.com.myvirtualhub.omni.domain.core.enums;
  * This information is typically used throughout the system to determine
  * how to process and handle communications based on the channel type.
  *
+ * @author Marco Quiçula
  * @version 1.0
  * @since 2024-01-08
  */

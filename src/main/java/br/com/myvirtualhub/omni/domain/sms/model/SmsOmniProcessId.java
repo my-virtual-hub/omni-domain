@@ -8,7 +8,7 @@
 package br.com.myvirtualhub.omni.domain.sms.model;
 
 import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
-import br.com.myvirtualhub.omni.domain.core.model.commons.OmniProcessId;
+import br.com.myvirtualhub.omni.domain.core.commons.OmniProcessId;
 
 /**
  * A specialized type of OmniProcessId that represents an SMS process within the application.
@@ -25,6 +25,15 @@ import br.com.myvirtualhub.omni.domain.core.model.commons.OmniProcessId;
  */
 public class SmsOmniProcessId extends OmniProcessId {
 
+    /**
+     * Constructs a new instance of SmsOmniProcessId with the SMS channel type.
+     *
+     * <p>This constructor initializes the SmsOmniProcessId with the specified channel type.
+     * The channel type represents the communication channel used for SMS operations.
+     *
+     * @see OmniProcessId
+     * @see ChannelType
+     */
     public SmsOmniProcessId() {
         super(ChannelType.SMS);
     }

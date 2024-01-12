@@ -31,33 +31,74 @@ public class ChannelProperties implements Model {
 
     private List<Property> properties;
 
+    /**
+     * Initializes a new instance of the {@code ChannelProperties} class.
+     *
+     * @param channelType The {@link ChannelType} of the channel.
+     * @param active      A boolean value indicating whether the channel is active.
+     * @param properties  A list of {@link Property} objects representing the specific configurations of the channel.
+     *
+     * @throws NullPointerException if {@code channelType} or {@code properties} is {@code null}.
+     */
     public ChannelProperties(ChannelType channelType, boolean active, List<Property> properties) {
         setChannelType(channelType);
         setActive(active);
         setProperties(properties);
     }
 
+    /**
+     * Returns the ChannelType of the channel.
+     *
+     * @return The ChannelType of the channel.
+     */
     public ChannelType getChannelType() {
         return channelType;
     }
 
+    /**
+     * Sets the channel type of the {@code ChannelProperties} instance.
+     *
+     * @param channelType The {@link ChannelType} to set as the channel type.
+     * @throws NullPointerException if {@code channelType} is {@code null}.
+     */
     public void setChannelType(ChannelType channelType) {
         Objects.requireNonNull(channelType, "ChannelProperties channelType cannot be null");
         this.channelType = channelType;
     }
 
+    /**
+     * Returns the active status of the channel.
+     *
+     * @return {@code true} if the channel is active, {@code false} otherwise.
+     */
     public boolean isActive() {
         return active;
     }
 
+    /**
+     * Sets the active status of the channel.
+     *
+     * @param active {@code true} if the channel is active, {@code false} otherwise.
+     */
     public void setActive(boolean active) {
         this.active = active;
     }
 
+    /**
+     * Retrieves the list of properties.
+     *
+     * @return The list of properties.
+     */
     public List<Property> getProperties() {
         return properties;
     }
 
+    /**
+     * Sets the properties of the {@code ChannelProperties} instance.
+     *
+     * @param properties A list of {@link Property} objects representing the specific configurations of the channel.
+     * @throws NullPointerException if {@code properties} is {@code null}.
+     */
     public void setProperties(List<Property> properties) {
         Objects.requireNonNull(channelType, "ChannelProperties properties cannot be null");
         this.properties = properties;

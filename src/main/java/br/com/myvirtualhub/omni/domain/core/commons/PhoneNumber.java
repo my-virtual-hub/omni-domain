@@ -5,11 +5,10 @@
  *  * you agree to respect the terms and conditions of the BSD-2-Clause license.
  */
 
-package br.com.myvirtualhub.omni.domain.core.model.commons;
+package br.com.myvirtualhub.omni.domain.core.commons;
 
 import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import br.com.myvirtualhub.omni.domain.core.validator.PhoneNumberIsValidValidatorHandler;
 
 import java.util.Objects;
 
@@ -25,7 +24,7 @@ import java.util.Objects;
  * @version 1.0
  * @since   YourProject 1.0
  */
-public class PhoneNumber {
+public class PhoneNumber  {
 
     private String content;
 
@@ -34,26 +33,29 @@ public class PhoneNumber {
      * of "+" followed by digits, including the country code, with no formatting.
      *
      * @param content the phone number string as entered by the user
+     * @throws PhoneNumberException if the phone number is invalid
      */
     public PhoneNumber(String content) throws PhoneNumberException{
-        Objects.requireNonNull(content, "PhoneNumber content cannot be null");
-        if (!content.matches("\\+\\d+")) {
-            throw new IllegalArgumentException("PhoneNumber content must be in the format of '+' followed by digits.");
-        }
+        PhoneNumberIsValidValidatorHandler validator = new PhoneNumberIsValidValidatorHandler.Builder().build();
+        validator.validate(content);
         setContent(content);
     }
 
+    /**
+     * Retrieves the content of the PhoneNumber object.
+     *
+     * @return the content of the PhoneNumber object as a String
+     */
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) throws PhoneNumberException {
-        Objects.requireNonNull(content, "PhoneNumber content cannot be null");
-        try {
-            PhoneNumberUtil.getInstance().isValidNumber(PhoneNumberUtil.getInstance().parse(content, "BR"));
-        } catch (NumberParseException e) {
-            throw new PhoneNumberException("Invalid phone number", e.toString());
-        }
+    /**
+     * Sets the content of the PhoneNumber object.
+     *
+     * @param content the new content for the PhoneNumber object
+     */
+    public void setContent(String content) {
         this.content = content;
     }
 

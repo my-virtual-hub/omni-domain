@@ -27,24 +27,52 @@ public class Provider implements Model {
     private String name;
     private List<ProviderChannel> providerChannels;
 
+    /**
+     * Creates a new Provider object with the specified name and list of provider channels.
+     *
+     * @param name             the name of the provider (must not be null)
+     * @param providerChannels the list of provider channels (must not be null)
+     */
     public Provider(String name, List<ProviderChannel> providerChannels) {
         setName(name);
         setChannels(providerChannels);
     }
 
+    /**
+     * Retrieves the name of the provider.
+     *
+     * @return The name of the provider.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name of the provider.
+     *
+     * @param name the name of the provider (must not be null)
+     * @throws NullPointerException if the name is null
+     */
     public void setName(String name) {
         Objects.requireNonNull(name, "Provider name cannot be null");
         this.name = name;
     }
 
+    /**
+     * Retrieves the list of ProviderChannels associated with this Provider.
+     *
+     * @return The list of ProviderChannels.
+     */
     public List<ProviderChannel> getChannels() {
         return providerChannels;
     }
 
+    /**
+     * Sets the list of ProviderChannels associated with this Provider.
+     *
+     * @param providerChannels the list of ProviderChannels (must not be null)
+     * @throws NullPointerException if providerChannels is null
+     */
     public void setChannels(List<ProviderChannel> providerChannels) {
         Objects.requireNonNull(providerChannels, "Provider providerChannels cannot be null");
         this.providerChannels = providerChannels;

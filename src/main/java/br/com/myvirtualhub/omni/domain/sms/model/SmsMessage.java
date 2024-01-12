@@ -27,24 +27,53 @@ public class SmsMessage implements Model {
 
     private Charset encodingType;
 
+    /**
+     * Constructs a new SmsMessage object with the given content and encoding type.
+     *
+     * @param content      The content of the SMS message as a string.
+     * @param encodingType The encoding type of the SMS message.
+     *
+     * @throws NullPointerException if the content or encodingType is null
+     */
     public SmsMessage(String content, Charset encodingType) {
         setContent(content);
         setEncodingType(encodingType);
     }
 
+    /**
+     * Retrieves the content of the SMS message.
+     *
+     * @return The content of the SMS message as a string.
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * Sets the content of the SMS message.
+     *
+     * @param content The content of the SMS message as a string.
+     */
     public void setContent(String content) {
         Objects.requireNonNull(content, "SmsMessage content cannot be null");
         this.content = content;
     }
 
+    /**
+     * Retrieves the encoding type of the SMS message.
+     *
+     * @return The encoding type of the SMS message.
+     */
     public Charset getEncodingType() {
         return encodingType;
     }
 
+    /**
+     * Sets the encoding type of the SMS message.
+     *
+     * @param encodingType The encoding type of the SMS message.
+     * @throws NullPointerException if the encodingType is null
+     */
     public void setEncodingType(Charset encodingType) {
         Objects.requireNonNull(encodingType, "SmsMessage encodingType cannot be null");
         this.encodingType = encodingType;

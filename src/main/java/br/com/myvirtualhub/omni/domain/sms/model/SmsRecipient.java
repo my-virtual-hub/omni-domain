@@ -7,7 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.domain.core.model.commons.PhoneNumber;
+import br.com.myvirtualhub.omni.domain.core.commons.PhoneNumber;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 /**
@@ -25,10 +25,25 @@ public class SmsRecipient implements Model {
 
     private final PhoneNumber phoneNumber;
 
+    /**
+     * Represents the recipient of an SMS message in the application.
+     *
+     * <p>Currently, this class only supports recipients identified by a {@link PhoneNumber}.
+     * Future implementations may extend support to other types of recipients.
+     *
+     * @param phoneNumber the phone number of the recipient
+     * @see PhoneNumber
+     */
     public SmsRecipient(PhoneNumber phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Retrieves the phone number of the SmsRecipient.
+     *
+     * @return the phone number of the SmsRecipient
+     * @see PhoneNumber
+     */
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }

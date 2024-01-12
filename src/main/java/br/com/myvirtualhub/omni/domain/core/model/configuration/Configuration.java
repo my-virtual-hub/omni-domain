@@ -32,34 +32,72 @@ public class Configuration implements Model {
 
     private List<ChannelProperties> channelProperties;
 
+    /**
+     * Creates a new instance of the Configuration class with the specified API token,
+     * provider name, and channel properties.
+     *
+     * @param apiToken          The API token associated with the configuration.
+     * @param providerName      The name of the service provider.
+     * @param channelProperties The list of channel properties for the configuration.
+     */
     public Configuration(String apiToken, String providerName, List<ChannelProperties> channelProperties) {
         setApiToken(apiToken);
         setProviderName(providerName);
         setChannelProperties(channelProperties);
     }
 
+    /**
+     * Retrieves the API token associated with the configuration.
+     *
+     * @return The API token as a string.
+     */
     public String getApiToken() {
         return apiToken;
     }
 
+    /**
+     * Sets the API token associated with the configuration.
+     *
+     * @param apiToken The API token to set. Cannot be null.
+     */
     public void setApiToken(String apiToken) {
         Objects.requireNonNull(apiToken, "Configuration apiToken cannot be null");
         this.apiToken = apiToken;
     }
 
+    /**
+     * Retrieves the name of the service provider.
+     *
+     * @return The name of the service provider as a string.
+     */
     public String getProviderName() {
         return providerName;
     }
 
+    /**
+     * Sets the name of the service provider.
+     *
+     * @param providerName The name of the service provider to set. Cannot be null.
+     */
     public void setProviderName(String providerName) {
         Objects.requireNonNull(providerName, "Configuration providerName cannot be null");
         this.providerName = providerName;
     }
 
+    /**
+     * Retrieves the list of channel properties associated with the configuration.
+     *
+     * @return The list of channel properties.
+     */
     public List<ChannelProperties> getChannelProperties() {
         return channelProperties;
     }
 
+    /**
+     * Sets the list of channel properties for the configuration.
+     *
+     * @param channelProperties The list of channel properties to set. Cannot be null.
+     */
     public void setChannelProperties(List<ChannelProperties> channelProperties) {
         Objects.requireNonNull(channelProperties, "Configuration channelProperties cannot be null");
         this.channelProperties = channelProperties;

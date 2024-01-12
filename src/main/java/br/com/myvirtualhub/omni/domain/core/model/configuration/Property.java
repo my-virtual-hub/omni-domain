@@ -26,24 +26,50 @@ public class Property implements Model {
 
     private String value;
 
+    /**
+     * Represents a property with a name and value.
+     *
+     * @param name The name of the property. Cannot be null.
+     * @param value The value of the property. Cannot be null.
+     */
     public Property(String name, String value) {
         setName(name);
         setValue(value);
     }
 
+    /**
+     * Retrieves the name of the property.
+     *
+     * @return The name of the property as a string.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name of the property.
+     *
+     * @param name The name of the property. Cannot be null.
+     */
     public void setName(String name) {
         Objects.requireNonNull(name, "Property name cannot be null");
         this.name = name;
     }
 
+    /**
+     * Retrieves the value of the property.
+     *
+     * @return The value of the property as a string.
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Sets the value of the property.
+     *
+     * @param value The value to be set. Cannot be null.
+     */
     public void setValue(String value) {
         Objects.requireNonNull(value, "Property value cannot be null");
         this.value = value;

@@ -24,34 +24,71 @@ public class ProviderProperty implements Model {
     private String description;
     private boolean required;
 
+    /**
+     * Constructs a new ProviderProperty with the given name, description, and required flag.
+     *
+     * @param name The name of the property. Cannot be null.
+     * @param description The description of the property. Cannot be null.
+     * @param required A flag indicating if the property is required or not.
+     */
     public ProviderProperty(String name, String description, boolean required) {
         setName(name);
         setDescription(description);
         setRequired(required);
     }
 
+    /**
+     * Returns the name of the ProviderProperty.
+     *
+     * @return The name of the ProviderProperty. Returns null if the name is not set.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name of the ProviderProperty.
+     *
+     * @param name The name of the ProviderProperty. Cannot be null.
+     */
     public void setName(String name) {
         Objects.requireNonNull(name, "ProviderProperty name cannot be null");
         this.name = name;
     }
 
+    /**
+     * Returns the description of the ProviderProperty.
+     *
+     * @return The description of the ProviderProperty. Returns null if the description is not set.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Sets the description of the ProviderProperty.
+     *
+     * @param description The description of the ProviderProperty. Cannot be null.
+     */
     public void setDescription(String description) {
         Objects.requireNonNull(description, "ProviderProperty description cannot be null");
         this.description = description;
     }
 
+    /**
+     * Checks if the ProviderProperty is required.
+     *
+     * @return true if the ProviderProperty is required, false otherwise.
+     */
     public boolean isRequired() {
         return required;
     }
 
+    /**
+     * Sets the required flag of the ProviderProperty.
+     *
+     * @param required A flag indicating if the property is required or not.
+     */
     public void setRequired(boolean required) {
         this.required = required;
     }
