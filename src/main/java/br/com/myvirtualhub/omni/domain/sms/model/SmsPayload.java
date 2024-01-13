@@ -7,6 +7,8 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
+import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.Objects;
@@ -18,7 +20,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-09
  */
-public class SmsPayload implements Model {
+public class SmsPayload implements Model, Copyable<SmsPayload> {
     private SmsRecipient recipient;
     private SmsMessage message;
     private String clientMessageId;
@@ -36,6 +38,13 @@ public class SmsPayload implements Model {
         this.message = message;
         this.clientMessageId = clientMessageId;
         this.smsOmniProcessId = new SmsOmniProcessId();
+    }
+
+    private SmsPayload(SmsRecipient recipient, SmsMessage message, String clientMessageId, SmsOmniProcessId smsOmniProcessId) {
+        this.recipient = recipient;
+        this.message = message;
+        this.clientMessageId = clientMessageId;
+        this.smsOmniProcessId = smsOmniProcessId;
     }
 
     /**
@@ -93,7 +102,6 @@ public class SmsPayload implements Model {
 
     /**
      * Sets the client message ID associated with the SMS payload.
-     *
      * This method sets the client message ID provided by the client for tracking purposes.
      * The client message ID is a unique identifier associated with the SMS payload.
      *
@@ -116,6 +124,19 @@ public class SmsPayload implements Model {
         return smsOmniProcessId;
     }
 
+    /**
+     * Creates a copy of the SmsPayload object.
+     *
+     * @return A copy of the SmsPayload object.
+     * @throws PhoneNumberException if there is an issue with the phone number
+     * @see SmsPayload
+     * @see PhoneNumberException
+     */
+    @Override
+    public SmsPayload copy() throws PhoneNumberException {
+        return new SmsPayload(getRecipient().copy(), getMessage().copy(), getClientMessageId(), (SmsOmniProcessId)getOmniMessageId().copy());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -125,7 +146,7 @@ public class SmsPayload implements Model {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRecipient(), getMessage(), getClientMessageId(), smsOmniProcessId);
+        return Objects.hash(getRecipient(), getMessage(), getClientMessageId(), getOmniMessageId());
     }
 
     @Override

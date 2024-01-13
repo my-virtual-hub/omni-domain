@@ -7,8 +7,11 @@
 
 package br.com.myvirtualhub.omni.domain.core.model.provider;
 
+import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,7 +25,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-08
  */
-public class Provider implements Model {
+public class Provider implements Model, Copyable<Provider> {
 
     private String name;
     private List<ProviderChannel> providerChannels;
@@ -35,7 +38,7 @@ public class Provider implements Model {
      */
     public Provider(String name, List<ProviderChannel> providerChannels) {
         setName(name);
-        setChannels(providerChannels);
+        setProviderChannels(providerChannels);
     }
 
     /**
@@ -63,7 +66,7 @@ public class Provider implements Model {
      *
      * @return The list of ProviderChannels.
      */
-    public List<ProviderChannel> getChannels() {
+    public List<ProviderChannel> getProviderChannels() {
         return providerChannels;
     }
 
@@ -73,7 +76,7 @@ public class Provider implements Model {
      * @param providerChannels the list of ProviderChannels (must not be null)
      * @throws NullPointerException if providerChannels is null
      */
-    public void setChannels(List<ProviderChannel> providerChannels) {
+    public void setProviderChannels(List<ProviderChannel> providerChannels) {
         Objects.requireNonNull(providerChannels, "Provider providerChannels cannot be null");
         this.providerChannels = providerChannels;
     }
@@ -82,12 +85,12 @@ public class Provider implements Model {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Provider provider)) return false;
-        return Objects.equals(getName(), provider.getName()) && Objects.equals(getChannels(), provider.getChannels());
+        return Objects.equals(getName(), provider.getName()) && Objects.equals(getProviderChannels(), provider.getProviderChannels());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getChannels());
+        return Objects.hash(getName(), getProviderChannels());
     }
 
     @Override
@@ -96,5 +99,14 @@ public class Provider implements Model {
                 "name='" + name + '\'' +
                 ", providerChannels=" + providerChannels +
                 '}';
+    }
+
+    @Override
+    public Provider copy() throws PhoneNumberException {
+        final List<ProviderChannel> providerChannelsClone = new ArrayList<>();
+        for(ProviderChannel providerChannel : getProviderChannels()) {
+            providerChannelsClone.add(providerChannel.copy());
+        }
+        return new Provider(this.getName(), providerChannelsClone);
     }
 }

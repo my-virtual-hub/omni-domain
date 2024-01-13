@@ -7,8 +7,10 @@
 
 package br.com.myvirtualhub.omni.domain.core.model.configuration;
 
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +26,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-08
  */
-public class Configuration implements Model {
+public class Configuration implements Model, Copyable<Configuration> {
 
     private String apiToken;
 
@@ -103,6 +105,23 @@ public class Configuration implements Model {
         this.channelProperties = channelProperties;
     }
 
+    /**
+     * Creates a deep copy of the Configuration object.
+     *
+     * @return A new instance of the Configuration class with a copy of all properties.
+     */
+    @Override
+    public Configuration copy() {
+        List<ChannelProperties> channelPropertiesClone = null;
+        if (this.getChannelProperties() != null) {
+            channelPropertiesClone = new ArrayList<>();
+            for (ChannelProperties channelProperty : this.getChannelProperties()) {
+                channelPropertiesClone.add(channelProperty.copy());
+            }
+        }
+        return new Configuration(this.getApiToken(), this.getProviderName(),channelPropertiesClone);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,5 +142,4 @@ public class Configuration implements Model {
                 ", channelProperties=" + channelProperties +
                 '}';
     }
-
 }

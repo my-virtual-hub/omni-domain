@@ -8,6 +8,7 @@
 package br.com.myvirtualhub.omni.domain.core.commons;
 
 import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.Objects;
@@ -22,7 +23,7 @@ import java.util.UUID;
  *  @version 1.0
  *  @since   2024-01-09
  */
-public abstract class OmniProcessId implements Model {
+public abstract class OmniProcessId implements Model, Copyable<OmniProcessId> {
 
     private final String prefix;
 
@@ -41,6 +42,19 @@ public abstract class OmniProcessId implements Model {
         this.prefix = "omni";
         this.channelType = channelType;
         this.omniProcessUUID = UUID.randomUUID();
+    }
+
+    /**
+     * Constructs a new instance of OmniProcessId with the specified prefix, channel type, and OmniProcess UUID.
+     *
+     * @param prefix The prefix associated with the OmniProcessId.
+     * @param channelType The channel type associated with the OmniProcessId.
+     * @param omniProcessUUID The universally unique identifier (UUID) associated with the OmniProcessId.
+     */
+    protected OmniProcessId(String prefix, ChannelType channelType, UUID omniProcessUUID) {
+        this.prefix = prefix;
+        this.channelType = channelType;
+        this.omniProcessUUID = omniProcessUUID;
     }
 
     /**
@@ -71,37 +85,6 @@ public abstract class OmniProcessId implements Model {
     }
 
     /**
-     * Compares this OmniProcessId to the specified object for equality.
-     *
-     * @param o the object to compare to
-     * @return {@code true} if the specified object is equal to this OmniProcessId, {@code false} otherwise
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OmniProcessId that)) return false;
-        return getPrefix().equals(that.getPrefix()) && getChannelType() == that.getChannelType() && getOmniProcessUUID().equals(that.getOmniProcessUUID());
-    }
-
-    /**
-     * Calculates the hash code value for this OmniProcessId object.
-     *
-     * The hash code is calculated by combining the hash codes of the prefix, channel type, and OmniProcessUUID
-     * fields using the Objects.hash() method.
-     *
-     * @return The hash code value for this OmniProcessId object.
-     *
-     * @see Objects#hash(Object...)
-     * @see #getPrefix()
-     * @see #getChannelType()
-     * @see #getOmniProcessUUID()
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(getPrefix(), getChannelType(), getOmniProcessUUID());
-    }
-
-    /**
      * Retrieves the OmniProcess ID, which is a concatenation of the prefix, channel type,
      * and OmniProcess UUID associated with the OmniProcessId object.
      *
@@ -111,13 +94,18 @@ public abstract class OmniProcessId implements Model {
         return getPrefix() + ":" + getChannelType().toString() + ":" + getOmniProcessUUID().toString();
     }
 
-    /**
-     * Returns a string representation of the OmniProcessId object. The string representation
-     * includes the class name, prefix, channelType, and omniProcessUUID.
-     *
-     * @return A string representation of the OmniProcessId object.
-     */
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OmniProcessId that)) return false;
+        return getPrefix().equals(that.getPrefix()) && getChannelType() == that.getChannelType() && getOmniProcessUUID().equals(that.getOmniProcessUUID());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPrefix(), getChannelType(), getOmniProcessUUID());
+    }
+
     public String toString() {
         return this.getClass().getSimpleName()+"{" +
                 "prefix='" + prefix + '\'' +

@@ -7,6 +7,8 @@
 
 package br.com.myvirtualhub.omni.domain.core.model.provider;
 
+import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.Objects;
@@ -19,7 +21,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-08
  */
-public class ProviderProperty implements Model {
+public class ProviderProperty implements Model, Copyable<ProviderProperty> {
     private String name;
     private String description;
     private boolean required;
@@ -91,6 +93,17 @@ public class ProviderProperty implements Model {
      */
     public void setRequired(boolean required) {
         this.required = required;
+    }
+
+    /**
+     * Creates a copy of the ProviderProperty object.
+     *
+     * @return A new ProviderProperty object with the same name, description, and required flag as the original.
+     * @throws PhoneNumberException if there is an issue with phone number operations while creating the copy.
+     */
+    @Override
+    public ProviderProperty copy() throws PhoneNumberException {
+        return new ProviderProperty(this.getName(), this.getDescription(), this.isRequired());
     }
 
     @Override

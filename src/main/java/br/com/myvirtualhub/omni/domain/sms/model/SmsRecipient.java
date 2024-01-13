@@ -8,6 +8,8 @@
 package br.com.myvirtualhub.omni.domain.sms.model;
 
 import br.com.myvirtualhub.omni.domain.core.commons.PhoneNumber;
+import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 /**
@@ -21,7 +23,7 @@ import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
  * @since   2024-01-09
  * @see     PhoneNumber
  */
-public class SmsRecipient implements Model {
+public class SmsRecipient implements Model, Copyable<SmsRecipient> {
 
     private final PhoneNumber phoneNumber;
 
@@ -46,6 +48,18 @@ public class SmsRecipient implements Model {
      */
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * Creates a copy of the {@link SmsRecipient} object.
+     *
+     * @return a copy of the SmsRecipient object
+     * @throws PhoneNumberException if there is an issue with the phone number
+     * @see SmsRecipient
+     */
+    @Override
+    public SmsRecipient copy() throws PhoneNumberException {
+        return new SmsRecipient(phoneNumber.copy());
     }
 
     @Override

@@ -8,8 +8,10 @@
 package br.com.myvirtualhub.omni.domain.core.commons;
 
 import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.validator.PhoneNumberIsValidValidatorHandler;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -24,8 +26,13 @@ import java.util.Objects;
  * @version 1.0
  * @since   YourProject 1.0
  */
-public class PhoneNumber  {
+public class PhoneNumber implements Serializable, Copyable<PhoneNumber> {
 
+    /**
+     * Represents the content of a variable.
+     *
+     * <p>This class stores the content of a variable as a string.
+     */
     private String content;
 
     /**
@@ -60,6 +67,11 @@ public class PhoneNumber  {
     }
 
     @Override
+    public PhoneNumber copy() throws PhoneNumberException {
+        return new PhoneNumber(getContent());
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PhoneNumber phoneNumber)) return false;
@@ -68,7 +80,7 @@ public class PhoneNumber  {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getContent());
+        return Objects.hashCode(getContent());
     }
 
     @Override

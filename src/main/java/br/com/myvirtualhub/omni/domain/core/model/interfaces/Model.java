@@ -19,7 +19,9 @@ package br.com.myvirtualhub.omni.domain.core.model.interfaces;
  * Other classes in the project (like services and repositories) depend on these
  * Model interfaces for carrying out business processes effectively.
  *
- * @since 2023-08-01
+ * @author Marco Quiçula
+ * @version 1.0
+ * @since 2024-01-08
  */
 public interface Model {
 

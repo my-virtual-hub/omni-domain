@@ -8,8 +8,10 @@
 package br.com.myvirtualhub.omni.domain.core.model.configuration;
 
 import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +25,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-08
  */
-public class ChannelProperties implements Model {
+public class ChannelProperties implements Model, Copyable<ChannelProperties> {
 
     private ChannelType channelType;
 
@@ -105,10 +107,22 @@ public class ChannelProperties implements Model {
     }
 
     @Override
+    public ChannelProperties copy() {
+        List<Property> clonedProperties = null;
+        if (getProperties() != null) {
+            clonedProperties = new ArrayList<>();
+            for (Property property : getProperties()) {
+                clonedProperties.add(property.copy());
+            }
+        }
+        return new ChannelProperties(getChannelType(), isActive(), clonedProperties);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ChannelProperties that)) return false;
-        return isActive() == that.isActive() && getChannelType() == that.getChannelType() && getProperties().equals(that.getProperties());
+        return isActive() == that.isActive() && getChannelType() == that.getChannelType() && Objects.equals(getProperties(), that.getProperties());
     }
 
     @Override

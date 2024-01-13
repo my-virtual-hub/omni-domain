@@ -16,6 +16,7 @@
 
     <properties>
         <repo-pkg-github>my-virtual-hub/omni-domain</repo-pkg-github>
+        <apache-commons-lang3>3.14.0</apache-commons-lang3>
     </properties>
 
     <dependencies>

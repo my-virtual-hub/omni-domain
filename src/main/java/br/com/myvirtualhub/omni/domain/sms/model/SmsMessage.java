@@ -7,6 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.nio.charset.Charset;
@@ -21,7 +22,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-09
  */
-public class SmsMessage implements Model {
+public class SmsMessage implements Model, Copyable<SmsMessage> {
 
     private String content;
 
@@ -77,6 +78,20 @@ public class SmsMessage implements Model {
     public void setEncodingType(Charset encodingType) {
         Objects.requireNonNull(encodingType, "SmsMessage encodingType cannot be null");
         this.encodingType = encodingType;
+    }
+
+    /**
+     * Copies an SmsMessage object.
+     * <p>
+     * This method creates a new SmsMessage object with the same content and encoding type
+     * as the current SmsMessage object. The content is copied as a new string object, and
+     * the encoding type is referenced. The new SmsMessage object is then returned.
+     *
+     * @return A copy of the SmsMessage object.
+     */
+    @Override
+    public SmsMessage copy() {
+        return new SmsMessage(this.getContent(), this.getEncodingType());
     }
 
     @Override

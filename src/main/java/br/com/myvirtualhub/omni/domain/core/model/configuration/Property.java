@@ -7,6 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.core.model.configuration;
 
+import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.Objects;
@@ -20,7 +21,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 2024-01-08
  */
-public class Property implements Model {
+public class Property implements Model, Copyable<Property> {
 
     private String name;
 
@@ -73,6 +74,16 @@ public class Property implements Model {
     public void setValue(String value) {
         Objects.requireNonNull(value, "Property value cannot be null");
         this.value = value;
+    }
+
+    /**
+     * Creates a copy of the {@link Property} object.
+     *
+     * @return a new {@link Property} object with the same name and value as the original object
+     */
+    @Override
+    public Property copy() {
+        return new Property( this.getName(), this.getValue());
     }
 
     @Override
