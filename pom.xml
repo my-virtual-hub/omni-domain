@@ -19,6 +19,14 @@
         <repo-pkg-github>my-virtual-hub/omni-domain</repo-pkg-github>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>alternative-repo-public</id>
+            <name>My Virtual Hub Maven Public Packages</name>
+            <url>https://nexus.myvirtualhub.com.br/repository/myvirtualhub-public/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.googlecode.libphonenumber</groupId>
