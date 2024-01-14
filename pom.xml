@@ -14,9 +14,13 @@
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <name>omni-domain</name>
+    <description>Omni Domain</description>
+    <url>https://omni.myvirtualhub.com.br</url>
+
     <properties>
-        <com-googlecode-libphonenumber>8.13.12</com-googlecode-libphonenumber>
         <repo-pkg-github>my-virtual-hub/omni-domain</repo-pkg-github>
+        <com-googlecode-libphonenumber>8.13.12</com-googlecode-libphonenumber>
     </properties>
 
     <repositories>
@@ -32,6 +36,16 @@
             <groupId>com.googlecode.libphonenumber</groupId>
             <artifactId>libphonenumber</artifactId>
             <version>${com-googlecode-libphonenumber}</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.myvirtualhub</groupId>
+            <artifactId>omni-ports-inbound</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.myvirtualhub</groupId>
+            <artifactId>omni-ports-outbound</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
