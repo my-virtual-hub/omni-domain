@@ -7,14 +7,13 @@
 
 package br.com.myvirtualhub.omni.domain.core.model.provider;
 
-import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.Objects;
 
 /**
- * Represents an Property in the ProviderChannel class. Each Property has a unique name,
+ * Represents a Property in the ProviderChannel class. Each Property has a unique name,
  * a description, a data type, and a flag indicating if it's required or not.
  *
  * @author Marco Quiçula
@@ -99,10 +98,9 @@ public class ProviderProperty implements Model, Copyable<ProviderProperty> {
      * Creates a copy of the ProviderProperty object.
      *
      * @return A new ProviderProperty object with the same name, description, and required flag as the original.
-     * @throws PhoneNumberException if there is an issue with phone number operations while creating the copy.
      */
     @Override
-    public ProviderProperty copy() throws PhoneNumberException {
+    public ProviderProperty copy() {
         return new ProviderProperty(this.getName(), this.getDescription(), this.isRequired());
     }
 
