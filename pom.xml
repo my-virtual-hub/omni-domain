@@ -15,9 +15,17 @@
     <packaging>jar</packaging>
 
     <properties>
+        <com-googlecode-libphonenumber>8.13.12</com-googlecode-libphonenumber>
         <repo-pkg-github>my-virtual-hub/omni-domain</repo-pkg-github>
-        <apache-commons-lang3>3.14.0</apache-commons-lang3>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>alternative-repo-public</id>
+            <name>My Virtual Hub Maven Public Packages</name>
+            <url>https://nexus.myvirtualhub.com.br/repository/myvirtualhub-public/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -26,12 +34,4 @@
             <version>${com-googlecode-libphonenumber}</version>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>alternative-repo-public</id>
-            <name>My Virtual Hub Maven Public Packages</name>
-            <url>https://repository.myvirtualhub.com.br/repository/myvirtualhub-public/</url>
-        </repository>
-    </repositories>
 </project>
