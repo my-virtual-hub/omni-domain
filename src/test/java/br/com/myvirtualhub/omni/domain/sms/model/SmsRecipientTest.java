@@ -7,8 +7,8 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.domain.core.commons.PhoneNumber;
-import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.commons.core.PhoneNumber;
+import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

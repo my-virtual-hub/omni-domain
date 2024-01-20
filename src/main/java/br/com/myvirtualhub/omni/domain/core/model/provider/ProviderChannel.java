@@ -7,9 +7,9 @@
 
 package br.com.myvirtualhub.omni.domain.core.model.provider;
 
-import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
-import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
-import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
+import br.com.myvirtualhub.omni.commons.enums.ChannelType;
+import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.commons.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.ArrayList;

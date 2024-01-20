@@ -7,8 +7,8 @@
 
 package br.com.myvirtualhub.omni.domain.core.model.configuration;
 
-import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
-import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
+import br.com.myvirtualhub.omni.commons.enums.ChannelType;
+import br.com.myvirtualhub.omni.commons.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.ArrayList;

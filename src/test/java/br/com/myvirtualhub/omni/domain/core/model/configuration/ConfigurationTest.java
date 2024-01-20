@@ -9,7 +9,7 @@ package br.com.myvirtualhub.omni.domain.core.model.configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
+import br.com.myvirtualhub.omni.commons.enums.ChannelType;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

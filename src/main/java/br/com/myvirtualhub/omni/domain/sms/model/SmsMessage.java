@@ -7,7 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
+import br.com.myvirtualhub.omni.commons.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.nio.charset.Charset;
