@@ -9,8 +9,8 @@ package br.com.myvirtualhub.omni.domain.core.model.provider;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
-import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.commons.enums.ChannelType;
+import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

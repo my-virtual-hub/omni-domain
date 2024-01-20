@@ -7,7 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
+import br.com.myvirtualhub.omni.commons.enums.ChannelType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -7,9 +7,9 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.domain.core.commons.PhoneNumber;
-import br.com.myvirtualhub.omni.domain.core.exceptions.PhoneNumberException;
-import br.com.myvirtualhub.omni.domain.core.model.interfaces.Copyable;
+import br.com.myvirtualhub.omni.commons.core.PhoneNumber;
+import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
+import br.com.myvirtualhub.omni.commons.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 /**

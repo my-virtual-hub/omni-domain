@@ -20,7 +20,6 @@
 
     <properties>
         <repo-pkg-github>my-virtual-hub/omni-domain</repo-pkg-github>
-        <com-googlecode-libphonenumber>8.13.12</com-googlecode-libphonenumber>
     </properties>
 
     <repositories>
@@ -33,9 +32,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.googlecode.libphonenumber</groupId>
-            <artifactId>libphonenumber</artifactId>
-            <version>${com-googlecode-libphonenumber}</version>
+            <groupId>br.com.myvirtualhub</groupId>
+            <artifactId>omni-commons</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>br.com.myvirtualhub</groupId>

@@ -7,8 +7,9 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.domain.core.enums.ChannelType;
-import br.com.myvirtualhub.omni.domain.core.commons.OmniProcessId;
+import br.com.myvirtualhub.omni.commons.core.OmniProcessId;
+import br.com.myvirtualhub.omni.commons.enums.ChannelType;
+
 import java.util.UUID;
 
 /**
