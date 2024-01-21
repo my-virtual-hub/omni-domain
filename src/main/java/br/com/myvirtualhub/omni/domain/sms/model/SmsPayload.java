@@ -9,7 +9,6 @@ package br.com.myvirtualhub.omni.domain.sms.model;
 
 import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
 import br.com.myvirtualhub.omni.commons.interfaces.Copyable;
-import br.com.myvirtualhub.omni.commons.sms.SmsOmniProcessId;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 
 import java.util.Objects;
@@ -25,7 +24,6 @@ public class SmsPayload implements Model, Copyable<SmsPayload> {
     private SmsRecipient recipient;
     private SmsMessage message;
     private String clientMessageId;
-    private final SmsOmniProcessId smsOmniProcessId;
 
     /**
      * Constructs a new SmsPayload.
@@ -38,14 +36,6 @@ public class SmsPayload implements Model, Copyable<SmsPayload> {
         this.recipient = recipient;
         this.message = message;
         this.clientMessageId = clientMessageId;
-        this.smsOmniProcessId = new SmsOmniProcessId();
-    }
-
-    private SmsPayload(SmsRecipient recipient, SmsMessage message, String clientMessageId, SmsOmniProcessId smsOmniProcessId) {
-        this.recipient = recipient;
-        this.message = message;
-        this.clientMessageId = clientMessageId;
-        this.smsOmniProcessId = smsOmniProcessId;
     }
 
     /**
@@ -115,17 +105,6 @@ public class SmsPayload implements Model, Copyable<SmsPayload> {
     }
 
     /**
-     * Retrieves the OmniMessageId associated with the SMS payload.
-     *
-     * @return The OmniMessageId of the SMS payload as an instance of the SmsOmniProcessId class.
-     * @see SmsPayload
-     * @see SmsOmniProcessId
-     */
-    public SmsOmniProcessId getOmniMessageId() {
-        return smsOmniProcessId;
-    }
-
-    /**
      * Creates a copy of the SmsPayload object.
      *
      * @return A copy of the SmsPayload object.
@@ -135,19 +114,19 @@ public class SmsPayload implements Model, Copyable<SmsPayload> {
      */
     @Override
     public SmsPayload copy() throws PhoneNumberException {
-        return new SmsPayload(getRecipient().copy(), getMessage().copy(), getClientMessageId(), (SmsOmniProcessId)getOmniMessageId().copy());
+        return new SmsPayload(getRecipient().copy(), getMessage().copy(), getClientMessageId());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof SmsPayload that)) return false;
-        return Objects.equals(getRecipient(), that.getRecipient()) && Objects.equals(getMessage(), that.getMessage()) && Objects.equals(getClientMessageId(), that.getClientMessageId()) && Objects.equals(smsOmniProcessId, that.smsOmniProcessId);
+        return Objects.equals(getRecipient(), that.getRecipient()) && Objects.equals(getMessage(), that.getMessage()) && Objects.equals(getClientMessageId(), that.getClientMessageId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRecipient(), getMessage(), getClientMessageId(), getOmniMessageId());
+        return Objects.hash(getRecipient(), getMessage(), getClientMessageId());
     }
 
     @Override
@@ -155,8 +134,6 @@ public class SmsPayload implements Model, Copyable<SmsPayload> {
         return "SmsPayload{" +
                 "recipient=" + recipient +
                 ", message=" + message +
-                ", clientMessageId=" + clientMessageId +
-                ", smsOmniProcessId=" + smsOmniProcessId +
-                "}";
+                ", clientMessageId=" + clientMessageId + "}";
     }
 }

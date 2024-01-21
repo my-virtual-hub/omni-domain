@@ -7,7 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.commons.core.PhoneNumber;
+import br.com.myvirtualhub.omni.commons.core.OmniPhoneNumber;
 import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ class SmsPayloadTest {
 
     @Test
     void testSmsPayloadCreationAndGetters() throws PhoneNumberException {
-        SmsRecipient recipient = new SmsRecipient(new PhoneNumber("+123456789"));
+        SmsRecipient recipient = new SmsRecipient(new OmniPhoneNumber("+123456789"));
         SmsMessage message = new SmsMessage("Test message", StandardCharsets.UTF_8);
         String clientMessageId = "client-123";
 
@@ -29,18 +29,17 @@ class SmsPayloadTest {
         assertEquals(recipient, payload.getRecipient());
         assertEquals(message, payload.getMessage());
         assertEquals(clientMessageId, payload.getClientMessageId());
-        assertNotNull(payload.getOmniMessageId());
     }
 
     @Test
     void testSetters() throws PhoneNumberException {
-        SmsRecipient recipient = new SmsRecipient(new PhoneNumber("+123456789"));
+        SmsRecipient recipient = new SmsRecipient(new OmniPhoneNumber("+123456789"));
         SmsMessage message = new SmsMessage("Test message", StandardCharsets.UTF_8);
         String clientMessageId = "client-123";
 
         SmsPayload payload = new SmsPayload(recipient, message, clientMessageId);
 
-        SmsRecipient newRecipient = new SmsRecipient(new PhoneNumber("987654321"));
+        SmsRecipient newRecipient = new SmsRecipient(new OmniPhoneNumber("987654321"));
         SmsMessage newMessage = new SmsMessage("New test message", StandardCharsets.UTF_8);
         String newClientMessageId = "client-456";
 
@@ -55,7 +54,7 @@ class SmsPayloadTest {
 
     @Test
     void testEqualsAndHashCode() throws PhoneNumberException {
-        SmsRecipient recipient = new SmsRecipient(new PhoneNumber("+123456789"));
+        SmsRecipient recipient = new SmsRecipient(new OmniPhoneNumber("+123456789"));
         SmsMessage message = new SmsMessage("Test message", StandardCharsets.UTF_8);
         String clientMessageId = "client-123";
 
@@ -69,7 +68,7 @@ class SmsPayloadTest {
 
     @Test
     void testToString() throws PhoneNumberException {
-        SmsRecipient recipient = new SmsRecipient(new PhoneNumber("+123456789"));
+        SmsRecipient recipient = new SmsRecipient(new OmniPhoneNumber("+123456789"));
         SmsMessage message = new SmsMessage("Test message", StandardCharsets.UTF_8);
         String clientMessageId = "client-123";
 
@@ -80,13 +79,11 @@ class SmsPayloadTest {
         assertTrue(payloadString.contains("recipient=" + recipient));
         assertTrue(payloadString.contains("message=" + message));
         assertTrue(payloadString.contains("clientMessageId=" + clientMessageId));
-        assertTrue(payloadString.contains("smsOmniProcessId="));
-        assertTrue(payloadString.contains("channelType=SMS"));
     }
 
     @Test
     void testCopy() throws PhoneNumberException {
-        SmsRecipient recipient = new SmsRecipient(new PhoneNumber("+123456789"));
+        SmsRecipient recipient = new SmsRecipient(new OmniPhoneNumber("+123456789"));
         SmsMessage message = new SmsMessage("Test message", StandardCharsets.UTF_8);
         String clientMessageId = "client-123";
 

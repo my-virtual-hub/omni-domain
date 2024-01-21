@@ -7,7 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.commons.core.PhoneNumber;
+import br.com.myvirtualhub.omni.commons.core.OmniPhoneNumber;
 import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
 import br.com.myvirtualhub.omni.commons.interfaces.Copyable;
 import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
@@ -15,39 +15,39 @@ import br.com.myvirtualhub.omni.domain.core.model.interfaces.Model;
 /**
  * Represents the recipient of an SMS message in the application.
  *
- * <p>Currently, this class only supports recipients identified by a {@link PhoneNumber}.
+ * <p>Currently, this class only supports recipients identified by a {@link OmniPhoneNumber}.
  * Future implementations may extend support to other types of recipients.
  *
  * @author  Marco Quiçula
  * @version 1.0
  * @since   2024-01-09
- * @see     PhoneNumber
+ * @see     OmniPhoneNumber
  */
 public class SmsRecipient implements Model, Copyable<SmsRecipient> {
 
-    private final PhoneNumber phoneNumber;
+    private final OmniPhoneNumber omniPhoneNumber;
 
     /**
      * Represents the recipient of an SMS message in the application.
      *
-     * <p>Currently, this class only supports recipients identified by a {@link PhoneNumber}.
+     * <p>Currently, this class only supports recipients identified by a {@link OmniPhoneNumber}.
      * Future implementations may extend support to other types of recipients.
      *
      * @param phoneNumber the phone number of the recipient
-     * @see PhoneNumber
+     * @see OmniPhoneNumber
      */
-    public SmsRecipient(PhoneNumber phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public SmsRecipient(OmniPhoneNumber phoneNumber) {
+        this.omniPhoneNumber = phoneNumber;
     }
 
     /**
      * Retrieves the phone number of the SmsRecipient.
      *
      * @return the phone number of the SmsRecipient
-     * @see PhoneNumber
+     * @see OmniPhoneNumber
      */
-    public PhoneNumber getPhoneNumber() {
-        return phoneNumber;
+    public OmniPhoneNumber getOmniPhoneNumber() {
+        return omniPhoneNumber;
     }
 
     /**
@@ -59,25 +59,25 @@ public class SmsRecipient implements Model, Copyable<SmsRecipient> {
      */
     @Override
     public SmsRecipient copy() throws PhoneNumberException {
-        return new SmsRecipient(phoneNumber.copy());
+        return new SmsRecipient(omniPhoneNumber.copy());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof SmsRecipient that)) return false;
-        return phoneNumber.equals(that.phoneNumber);
+        return omniPhoneNumber.equals(that.omniPhoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return phoneNumber.hashCode();
+        return omniPhoneNumber.hashCode();
     }
 
     @Override
     public String toString() {
         return "SmsRecipient{" +
-                "phoneNumber=" + phoneNumber +
+                "omniPhoneNumber=" + omniPhoneNumber +
                 '}';
     }
 }
