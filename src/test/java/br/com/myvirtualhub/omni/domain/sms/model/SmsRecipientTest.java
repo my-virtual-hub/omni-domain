@@ -7,7 +7,7 @@
 
 package br.com.myvirtualhub.omni.domain.sms.model;
 
-import br.com.myvirtualhub.omni.commons.core.PhoneNumber;
+import br.com.myvirtualhub.omni.commons.core.OmniPhoneNumber;
 import br.com.myvirtualhub.omni.commons.exceptions.PhoneNumberException;
 import org.junit.jupiter.api.Test;
 
@@ -17,19 +17,19 @@ class SmsRecipientTest {
 
     @Test
     void testCreateSmsRecipient() throws PhoneNumberException {
-        PhoneNumber phoneNumber = new PhoneNumber("+123456789");
-        SmsRecipient recipient = new SmsRecipient(phoneNumber);
+        OmniPhoneNumber omniPhoneNumber = new OmniPhoneNumber("+123456789");
+        SmsRecipient recipient = new SmsRecipient(omniPhoneNumber);
 
         assertNotNull(recipient);
-        assertEquals(phoneNumber, recipient.getPhoneNumber());
+        assertEquals(omniPhoneNumber, recipient.getOmniPhoneNumber());
     }
 
     @Test
     void testEquals() throws PhoneNumberException {
-        PhoneNumber phoneNumber = new PhoneNumber("+123456789");
-        SmsRecipient recipient1 = new SmsRecipient(phoneNumber);
-        SmsRecipient recipient2 = new SmsRecipient(phoneNumber);
-        SmsRecipient recipient3 = new SmsRecipient(new PhoneNumber("987654321"));
+        OmniPhoneNumber omniPhoneNumber = new OmniPhoneNumber("+123456789");
+        SmsRecipient recipient1 = new SmsRecipient(omniPhoneNumber);
+        SmsRecipient recipient2 = new SmsRecipient(omniPhoneNumber);
+        SmsRecipient recipient3 = new SmsRecipient(new OmniPhoneNumber("987654321"));
 
         assertEquals(recipient1, recipient2);
         assertNotEquals(recipient1, recipient3);
@@ -37,27 +37,27 @@ class SmsRecipientTest {
 
     @Test
     void testHashCode() throws PhoneNumberException {
-        PhoneNumber phoneNumber = new PhoneNumber("+123456789");
-        SmsRecipient recipient1 = new SmsRecipient(phoneNumber);
-        SmsRecipient recipient2 = new SmsRecipient(phoneNumber);
+        OmniPhoneNumber omniPhoneNumber = new OmniPhoneNumber("+123456789");
+        SmsRecipient recipient1 = new SmsRecipient(omniPhoneNumber);
+        SmsRecipient recipient2 = new SmsRecipient(omniPhoneNumber);
 
         assertEquals(recipient1.hashCode(), recipient2.hashCode());
     }
 
     @Test
     void testToString() throws PhoneNumberException {
-        PhoneNumber phoneNumber = new PhoneNumber("+123456789");
-        SmsRecipient recipient = new SmsRecipient(phoneNumber);
+        OmniPhoneNumber omniPhoneNumber = new OmniPhoneNumber("+123456789");
+        SmsRecipient recipient = new SmsRecipient(omniPhoneNumber);
 
-        String expectedString = "SmsRecipient{phoneNumber=" + phoneNumber + "}";
+        String expectedString = "SmsRecipient{omniPhoneNumber=" + omniPhoneNumber + "}";
         assertEquals(expectedString, recipient.toString());
     }
 
     @Test
     void testCopy() throws PhoneNumberException {
-        PhoneNumber phoneNumber = new PhoneNumber("+123456789");
+        OmniPhoneNumber omniPhoneNumber = new OmniPhoneNumber("+123456789");
 
-        SmsRecipient original = new SmsRecipient(phoneNumber);
+        SmsRecipient original = new SmsRecipient(omniPhoneNumber);
         SmsRecipient copy = original.copy();
 
         assertNotSame(original, copy);
