@@ -1,0 +1,192 @@
+name: Pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  qodana:
+    name: Qodana Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+      security-events: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@v2023.3
+        with:
+          pr-mode: false
+          args: --apply-fixes
+          push-fixes: pull-request
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+      - uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+  sonar:
+    name: Sonar Analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'zulu' # Alternative distribution options are available.
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build with Maven
+        run: mvn -B ${{ github.ref != 'refs/heads/main' && '-U' || '' }} package --file pom.xml --settings .github/settings.xml
+
+      - name: Sonar Analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=${{ vars.SONAR_PROJECTKEY }} -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml -Dsonar.exclusions="**/interfaces/**,**/enums/**"
+  merge-to-main:
+    name: DEVELOP Merge DEVELOP to MAIN
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    needs:
+      - qodana
+      - sonar
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Important for fetching all branches
+          token: ${{ secrets.PAT_REPO_GITHUB_ACTIONS }}
+      - name: Set up Git User to Sign Commit
+        run: |
+          mkdir -p ~/.gnupg/
+          echo "${{ secrets.GPG_SIGN_PRIVATE_KEY }}" > ~/.gnupg/private-key.asc
+          gpg --batch --import ~/.gnupg/private-key.asc
+          git config --global commit.gpgsign "true"
+          git config --global user.signingkey "${{ secrets.GIT_CONFIG_USER_SIGNINGKEY }}" 
+          git config --global user.email "${{ vars.GIT_CONFIG_USER_EMAIL }}"
+          git config --global user.name "${{ vars.GIT_CONFIG_USER_NAME }}"
+      - name: Merge branch
+        run: |
+          git fetch origin
+          git checkout main  # Replace with your target branch
+          git merge --no-ff origin/develop  # Replace with your source branch
+          git push origin main  # Replace with your target branch
+  publish:
+    name: MAIN Maven Package and Publish
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs:
+      - qodana
+      - sonar
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build with Maven
+        run: mvn -B ${{ github.ref != 'refs/heads/main' && '-U' || '' }} package --file pom.xml --settings .github/settings.xml
+      - name: Prepare GPG to Sign
+        run: |
+          mkdir -p ~/.gnupg/
+          echo "${{ secrets.GPG_PASSPHRASE }}" > ~/.gnupg/passphrase-file
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" > ~/.gnupg/private-key.asc
+          chmod 600 ~/.gnupg/passphrase-file
+          cat ~/.gnupg/passphrase-file | gpg --batch --import --passphrase-fd 0 ~/.gnupg/private-key.asc
+      - name: Publish to GitHub Repository
+        run: mvn -B deploy --settings .github/settings.xml -Pgithub -DskipTests
+        env:
+          MAVEN_USERNAME: ${{ vars.MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          GPG_PASSPHRASE : ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEYNAME : ${{ vars.GPG_KEYNAME }}
+          GPG_PASSPHRASE_SERVER_ID : ${{ secrets.GPG_PASSPHRASE_SERVER_ID }}
+      - name: Publish to MVH Repository
+        run: mvn -B deploy --settings .github/settings.xml -Palternative -DskipTests
+        env:
+          MAVEN_USERNAME_ALTERNATIVE_RELEASE: ${{ vars.MAVEN_USERNAME_ALTERNATIVE_RELEASE }}
+          MAVEN_PASSWORD_ALTERNATIVE_RELEASE: ${{ secrets.MAVEN_PASSWORD_ALTERNATIVE_RELEASE }}
+          MAVEN_USERNAME_ALTERNATIVE_SNAPSHOT: ${{ vars.MAVEN_USERNAME_ALTERNATIVE_SNAPSHOT }}
+          MAVEN_PASSWORD_ALTERNATIVE_SNAPSHOT: ${{ secrets.MAVEN_PASSWORD_ALTERNATIVE_SNAPSHOT }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEYNAME: ${{ vars.GPG_KEYNAME }}
+          GPG_PASSPHRASE_SERVER_ID: ${{ secrets.GPG_PASSPHRASE_SERVER_ID }}
+      - name: Publish to OSSRH Repository
+        run: mvn -B deploy --settings .github/settings.xml -Possrh -DskipTests
+        env:
+          MAVEN_USERNAME_OSSRH: ${{ vars.MAVEN_USERNAME_OSSRH }}
+          MAVEN_PASSWORD_OSSRH: ${{ secrets.MAVEN_PASSWORD_OSSRH }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_KEYNAME: ${{ vars.GPG_KEYNAME }}
+          GPG_PASSPHRASE_SERVER_ID: ${{ secrets.GPG_PASSPHRASE_SERVER_ID }}
+  tag:
+    name: MAIN Generate Tag
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs:
+      - publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Important for fetching all branches
+          token: ${{ secrets.PAT_REPO_GITHUB_ACTIONS }}
+      - name: Set up Git User to Sign Commit
+        run: |
+          mkdir -p ~/.gnupg/
+          echo "${{ secrets.GPG_SIGN_PRIVATE_KEY }}" > ~/.gnupg/private-key.asc
+          gpg --batch --import ~/.gnupg/private-key.asc
+          git config --global commit.gpgsign "true"
+          git config --global user.signingkey "${{ secrets.GIT_CONFIG_USER_SIGNINGKEY }}" 
+          git config --global user.email "${{ vars.GIT_CONFIG_USER_EMAIL }}"
+          git config --global user.name "${{ vars.GIT_CONFIG_USER_NAME }}"
+      - name: Generate Tag
+        run: |
+          VERSION=$(cat pom.xml | grep '<version>' | head -1 | awk -F'[<>]' '{print $3}')
+          TAG_NAME=tag-$(date +"%Y%m%d-%H%M%S-%3N")-$VERSION
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
