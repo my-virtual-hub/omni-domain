@@ -20,6 +20,7 @@
 
     <properties>
         <repo-pkg-github>my-virtual-hub/omni-domain</repo-pkg-github>
+        <reflections-version>0.10.2</reflections-version>
     </properties>
 
     <repositories>
