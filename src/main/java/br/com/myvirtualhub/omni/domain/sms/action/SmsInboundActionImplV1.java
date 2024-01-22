@@ -22,6 +22,7 @@ public class SmsInboundActionImplV1 implements SmsInboundAction {
      */
     @Override
     public SmsResultDTO sendSms(SmsPayloadDTO smsPayload) {
-        return null;
+        //TODO: Implement this method
+        return SmsResultDTO.queued();
     }
 }
