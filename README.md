@@ -79,9 +79,7 @@ These are essential tools for building and managing the project. The project use
 
 ## License
 
-[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
-
-![GPL-3.0 license](images/gplv3-or-later.png)
+Omni Communicator is Open Source software released under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.html).
 
 ## Contact
 
