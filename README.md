@@ -79,13 +79,9 @@ These are essential tools for building and managing the project. The project use
 
 ## License
 
-This software is governed by the BSD 2-Clause License. This is a free software license with minimal restrictions on redistribution, providing flexibility for both private and commercial use. The BSD license is compatible with many other open source licenses, making it a popular choice for software distribution.
+[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
 
-For more information about the BSD 2-Clause License and its terms, please visit the official license link:
-
-[BSD 2-Clause License](https://opensource.org/licenses/BSD-2-Clause)
-
-![Approved License](images/approved-license.png)
+![GPL-3.0 license](images/gplv3-or-later.png)
 
 ## Contact
 
