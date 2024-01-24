@@ -16,6 +16,7 @@
 
 package br.com.myvirtualhub.omni.domain.core.provider;
 
+import br.com.myvirtualhub.omni.domain.core.initializer.InitializerInboundActionProviderFactory;
 import br.com.myvirtualhub.omni.ports.inbound.core.exceptions.ProviderFactoryException;
 import br.com.myvirtualhub.omni.ports.inbound.core.provider.InboundActionProviderFactory;
 import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundAction;
@@ -24,10 +25,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class InitializeProviderFactoryTest {
+class InitializerInboundActionProviderFactoryTest {
 
     @Test
     void testProviderFactoryInitialization() throws ProviderFactoryException {
+        InitializerInboundActionProviderFactory.touch();
         final InboundActionProviderFactory<SmsInboundActionFactory<SmsInboundAction>, SmsInboundAction> inboundActionProviderFactory = InboundActionProviderFactory.getINSTANCE();
         SmsInboundActionFactory<SmsInboundAction> factory = inboundActionProviderFactory.getFactory(SmsInboundActionFactory.class.getSimpleName());
         assertNotNull(factory);
