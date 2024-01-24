@@ -30,7 +30,7 @@ import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundActionFac
 public final class InitializerInboundActionProviderFactory {
 
     static {
-        InitializerInboundActionProviderFactory.touch();
+        InboundActionProviderFactory.getINSTANCE().resetProviderFactory();
     }
 
     /**

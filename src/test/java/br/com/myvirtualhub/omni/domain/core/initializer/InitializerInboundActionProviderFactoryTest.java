@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package br.com.myvirtualhub.omni.domain.core.provider;
+package br.com.myvirtualhub.omni.domain.core.initializer;
 
-import br.com.myvirtualhub.omni.domain.core.initializer.InitializerInboundActionProviderFactory;
 import br.com.myvirtualhub.omni.ports.inbound.core.exceptions.ProviderFactoryException;
 import br.com.myvirtualhub.omni.ports.inbound.core.provider.InboundActionProviderFactory;
 import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundAction;
@@ -34,5 +33,4 @@ class InitializerInboundActionProviderFactoryTest {
         SmsInboundActionFactory<SmsInboundAction> factory = inboundActionProviderFactory.getFactory(SmsInboundActionFactory.class.getSimpleName());
         assertNotNull(factory);
     }
-
 }
