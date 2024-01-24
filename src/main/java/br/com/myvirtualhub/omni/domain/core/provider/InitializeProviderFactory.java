@@ -17,10 +17,9 @@
 package br.com.myvirtualhub.omni.domain.core.provider;
 
 import br.com.myvirtualhub.omni.domain.sms.factory.SmsInboundActionFactoryImpl;
-import br.com.myvirtualhub.omni.ports.inbound.core.interfaces.InboudActionFactory;
 import br.com.myvirtualhub.omni.ports.inbound.core.provider.InboundActionProviderFactory;
-
-import java.util.List;
+import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundAction;
+import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundActionFactory;
 
 /**
  * The InitializeProviderFactory class is a utility class used to initialize the provider factory.
@@ -40,13 +39,19 @@ public final class InitializeProviderFactory {
         initialize();
     }
 
-    /**
-     * Initializes the provider factory by adding a list of inbound action factories
-     * and initializing the InboundActionProviderFactory.
-     */
     private void initialize() {
-        List<? extends InboudActionFactory<?>> factoriesList = List.of(new SmsInboundActionFactoryImpl());
-        InboundActionProviderFactory.getInstance().initialize(factoriesList);
+        SmsInboundActionFactory<SmsInboundAction> factory = createSmsFactory();
+        InboundActionProviderFactory<SmsInboundActionFactory<SmsInboundAction>, SmsInboundAction> providerFactory = InboundActionProviderFactory.getINSTANCE();
+        providerFactory.charge(factory);
+    }
+
+    /**
+     * Create a factory for SmsInboundAction objects.
+     *
+     * @return The SmsInboundActionFactory instance.
+     */
+    private SmsInboundActionFactory<SmsInboundAction> createSmsFactory() {
+        return new SmsInboundActionFactoryImpl();
     }
 
     /**
@@ -54,7 +59,8 @@ public final class InitializeProviderFactory {
      *
      * @return The InitializeProviderFactory instance.
      */
-    public static InitializeProviderFactory getInstance() {
+    public static InitializeProviderFactory getINSTANCE() {
         return INSTANCE;
     }
+
 }
