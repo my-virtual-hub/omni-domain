@@ -32,7 +32,8 @@ public class SmsInboundActionFactoryImpl implements SmsInboundActionFactory<SmsI
      * @return An instance of SmsInboundAction.
      */
     @Override
-    public SmsInboundAction create() {
+    public SmsInboundAction createAction() {
         return instance;
     }
+
 }
