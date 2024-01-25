@@ -16,6 +16,8 @@
 
 package br.com.myvirtualhub.omni.domain.core.initializer;
 
+import br.com.myvirtualhub.omni.commons.annotations.Initializer;
+import br.com.myvirtualhub.omni.commons.annotations.InitializerMethod;
 import br.com.myvirtualhub.omni.domain.sms.factory.SmsInboundActionFactoryImpl;
 import br.com.myvirtualhub.omni.ports.inbound.core.provider.InboundActionProviderFactory;
 import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundAction;
@@ -27,6 +29,7 @@ import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundActionFac
  * Usage:
  * - To initialize the provider factory, call the static method InitializerInboundActionProviderFactory.touch().
  */
+@Initializer
 public final class InitializerInboundActionProviderFactory {
 
     static {
@@ -48,10 +51,12 @@ public final class InitializerInboundActionProviderFactory {
      * The touch method calls InboundActionProviderFactory.getINSTANCE().resetProviderFactory() to reset the factory,
      * then calls the private initialize() method to initialize it.
      */
+    @InitializerMethod
     public static void touch() {
         InboundActionProviderFactory.getINSTANCE().resetProviderFactory();
         initialize();
     }
+
     /**
      * Initializes the InboundActionProviderFactory by creating and charging a SmsInboundActionFactory into it.
      * This method is private and can only be called within the containing class.
