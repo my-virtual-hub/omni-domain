@@ -19,11 +19,15 @@ package br.com.myvirtualhub.omni.domain.sms.action;
 import br.com.myvirtualhub.omni.ports.inbound.sms.dto.SmsPayloadDTO;
 import br.com.myvirtualhub.omni.ports.inbound.sms.dto.SmsResultDTO;
 import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundAction;
+import org.slf4j.Logger;
 
 /**
  * Implementation of the SmsInboundAction interface for sending inbound SMS.
  */
 public class SmsInboundActionImplV1 implements SmsInboundAction {
+
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(SmsInboundActionImplV1.class);
+
     /**
      * Sends an SMS message using the given payload.
      * @param smsPayload The payload containing the SMS message details.
@@ -31,6 +35,8 @@ public class SmsInboundActionImplV1 implements SmsInboundAction {
      */
     @Override
     public SmsResultDTO sendSms(SmsPayloadDTO smsPayload) {
+
+        LOGGER.info("Sending SMS message...");
         //TODO: Implement this method
         return SmsResultDTO.queued();
     }
