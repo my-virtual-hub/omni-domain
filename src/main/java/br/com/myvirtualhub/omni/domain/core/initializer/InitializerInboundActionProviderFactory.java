@@ -22,6 +22,7 @@ import br.com.myvirtualhub.omni.domain.sms.factory.SmsInboundActionFactoryImpl;
 import br.com.myvirtualhub.omni.ports.inbound.core.provider.InboundActionProviderFactory;
 import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundAction;
 import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundActionFactory;
+import org.slf4j.Logger;
 
 /**
  * The InitializerInboundActionProviderFactory class initializes the InboundActionProviderFactory by creating
@@ -31,6 +32,8 @@ import br.com.myvirtualhub.omni.ports.inbound.sms.interfaces.SmsInboundActionFac
  */
 @Initializer
 public final class InitializerInboundActionProviderFactory {
+
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(InitializerInboundActionProviderFactory.class);
 
     static {
         InboundActionProviderFactory.getINSTANCE().resetProviderFactory();
@@ -53,6 +56,7 @@ public final class InitializerInboundActionProviderFactory {
      */
     @InitializerMethod
     public static void touch() {
+        LOGGER.info("Reset InboundActionProviderFactory...");
         InboundActionProviderFactory.getINSTANCE().resetProviderFactory();
         initialize();
     }
@@ -70,6 +74,7 @@ public final class InitializerInboundActionProviderFactory {
      * This method is private and can only be called within the containing class.
      */
     private static void createSmsFactory() {
+        LOGGER.info("Initializing SmsInboundActionFactory...");
         InboundActionProviderFactory<SmsInboundActionFactory<SmsInboundAction>, SmsInboundAction> providerFactory = InboundActionProviderFactory.getINSTANCE();
         SmsInboundActionFactory<SmsInboundAction> factory = new SmsInboundActionFactoryImpl();
         providerFactory.charge(factory);
